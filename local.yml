@@ -1,8 +1,6 @@
 - hosts: localhost
   become: true
   tasks:
-    - include: tasks/common.yml
-    - include: tasks/kvm.yml
-    - include: tasks/docker.yml
-
+    - include: tasks/k8s_kind.yml
+  
 
