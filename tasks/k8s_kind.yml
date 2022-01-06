@@ -14,7 +14,8 @@
     chmod +x ./kind
     mv ./kind /usr/local/bin
     which kind
-kind version  register: result
+    kind version  
+  register: result
 - debug: msg="{{ result.stdout }}"
 - debug: msg="{{ result.stderr }}"
 
