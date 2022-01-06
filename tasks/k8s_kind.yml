@@ -1,3 +1,8 @@
+- name: Check if kubectl exists
+  stat: 
+    path: /usr/local/bin/kubectl
+  register: kubectl
+
 - name: Install kubectl
   shell: |
     curl -LO -k "https://dl.k8s.io/release/$(curl -L -ks https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -5,8 +10,14 @@
     mv ./kubectl /usr/local/bin/kubectl
     kubectl version --client
   register: result
+  when: kubectl.stat.exists == false
 - debug: msg="{{ result.stdout }}"
 - debug: msg="{{ result.stderr }}"
+
+- name: Check if kind exists
+  stat: 
+    path: /usr/local/bin/kind
+  register: kind
 
 - name: Install kind
   shell: |
@@ -16,7 +27,16 @@
     which kind
     kind version  
   register: result
+  when: kind.stat.exists == false
 - debug: msg="{{ result.stdout }}"
 - debug: msg="{{ result.stderr }}"
 
+- name: Install kind
+  shell: |
+    echo "kind create cluster --name k8s-kind-cluster1"
+    echo "kubectl cluster-info --context kind-k8s-kind-cluster1"
+    echo "kubectl get all"
+  register: result
+- debug: msg="{{ result.stdout }}"
+- debug: msg="{{ result.stderr }}"
 
