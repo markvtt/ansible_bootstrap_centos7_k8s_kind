@@ -49,7 +49,7 @@
 
 - name: Create cluster
   shell: |
-    echo "kind create cluster --name k8s-playground --config kind-config.yaml"
+    echo "kind create cluster --name k8s-playground --config kind-config.yml"
     echo "kubectl cluster-info --context kind-k8s-playground"
     echo "kubectl get all"
     echo "kind delete cluster --name k8s-playground"
