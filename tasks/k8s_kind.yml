@@ -4,3 +4,6 @@
     chmod +x kubectl
     mv ./kubectl /usr/local/bin/kubectl
     kubectl version --client"
+  register: result
+- debug: msg="{{ result.stdout }}"
+- debug: msg="{{ result.stderr }}"
