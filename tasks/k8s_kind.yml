@@ -37,7 +37,7 @@
 
 - name: Creating a file with content
   copy:
-    dest: "./kind-config.yml"
+    dest: "~/kind-config.yml"
     content: |
       # three node (two workers) cluster config
       kind: Cluster
