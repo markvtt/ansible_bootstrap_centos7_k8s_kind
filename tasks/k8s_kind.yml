@@ -1,7 +1,7 @@
 - name: Check if kubectl exists
   stat: 
     path: /usr/local/bin/kubectl
-  register: kubectl
+  register: kubectl_file
 
 - name: Install kubectl
   shell: |
@@ -10,14 +10,14 @@
     mv ./kubectl /usr/local/bin/kubectl
     kubectl version --client
   register: result
-  when: kubectl.stat.exists == false
+  when: kubectl_file.stat.exists == false
 - debug: msg="{{ result.stdout }}"
 - debug: msg="{{ result.stderr }}"
 
 - name: Check if kind exists
   stat: 
     path: /usr/local/bin/kind
-  register: kind
+  register: kind_file
 
 - name: Install kind
   shell: |
@@ -27,7 +27,7 @@
     which kind
     kind version  
   register: result
-  when: kind.stat.exists == false
+  when: kind_file.stat.exists == false
 - debug: msg="{{ result.stdout }}"
 - debug: msg="{{ result.stderr }}"
 
