@@ -12,9 +12,9 @@
   register: result
   when: kubectl_file.stat.exists == false
 - debug: msg="{{ result.stdout }}"
-  when: result is defined
+  when: result.stdout is defined
 - debug: msg="{{ result.stderr }}"
-  when: result is defined
+  when: result.stderr is defined
 
 - name: Check if kind exists
   stat: 
@@ -31,9 +31,9 @@
   register: result
   when: kind_file.stat.exists == false
 - debug: msg="{{ result.stdout }}"
-  when: result is defined
+  when: result.stdout is defined
 - debug: msg="{{ result.stderr }}"
-  when: result is defined
+  when: result.stderr is defined
 
 - name: Install kind
   shell: |
@@ -42,7 +42,7 @@
     echo "kubectl get all"
   register: result
 - debug: msg="{{ result.stdout }}"
-  when: result is defined
+  when: result.stdout is defined
 - debug: msg="{{ result.stderr }}"
-  when: result is defined
+  when: result.stderr is defined
 
