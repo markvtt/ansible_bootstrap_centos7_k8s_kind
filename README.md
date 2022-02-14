@@ -1,6 +1,7 @@
 # ansible_bootstrap_centos7_k8s_kind
 
 Install Kind k8s using ansible
+Ensure host is bootstrapped with docker
 
 # Kind installation based on this article
 https://www.linkedin.com/pulse/install-kind-kubernetes-cluster-linux-prayag-sangode/?trk=pulse-article_more-articles_related-content-card
